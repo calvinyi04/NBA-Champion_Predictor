@@ -1,15 +1,20 @@
-Building dataset …
-Dataset rows: 540
+Generating dataset...
+Dataset created with 540 records
+Building Random Forest Championship Predictor...
+Dataset shape: (540, 11)
+Champions in dataset: 18
+Class distribution: {0: 522, 1: 18}
 
+==================================================
 MODEL EVALUATION
-----------------
-Train Acc : 1.000
-Test Acc  : 0.954
-CV   AUC  : 0.925 ± 0.058
-Test AUC  : 0.894
+==================================================
+Training Accuracy: 1.0000
+Testing Accuracy: 0.9537
+Cross-validation AUC: 0.9250 (+/- 0.0577)
+Test ROC AUC: 0.8942
 
 Classification Report:
-               precision    recall  f1-score   support
+              precision    recall  f1-score   support
 
            0       0.96      0.99      0.98       104
            1       0.00      0.00      0.00         4
@@ -18,6 +23,43 @@ Classification Report:
    macro avg       0.48      0.50      0.49       108
 weighted avg       0.93      0.95      0.94       108
 
+
 Confusion Matrix:
- [[103   1]
+[[103   1]
  [  4   0]]
+
+==================================================
+FEATURE IMPORTANCE
+==================================================
+       feature  importance
+   reg_win_pct    0.294037
+avg_point_diff    0.228434
+        fg_pct    0.129286
+        ft_pct    0.068590
+       fg3_pct    0.057635
+  tov_per_game    0.056748
+  stl_per_game    0.052485
+  ast_per_game    0.035414
+  blk_per_game    0.031424
+  reb_per_game    0.023233
+ fg3a_per_game    0.022714
+
+======================================================================
+CHAMPIONSHIP PROBABILITY PREDICTIONS
+======================================================================
+
+Championship Probabilities for Season 22022:
+------------------------------------------------------------------------------------------
+Denver Nuggets            | Prob: 73.0% | Win%: 0.646 | Pt Diff: +3.3 | CHAMPION
+Milwaukee Bucks           | Prob: 21.5% | Win%: 0.707 | Pt Diff: +3.6 | 
+Philadelphia 76ers        | Prob: 10.9% | Win%: 0.659 | Pt Diff: +4.3 | 
+Boston Celtics            | Prob: 4.4% | Win%: 0.695 | Pt Diff: +6.5 | 
+Cleveland Cavaliers       | Prob: 3.8% | Win%: 0.622 | Pt Diff: +5.4 | 
+Memphis Grizzlies         | Prob: 2.4% | Win%: 0.622 | Pt Diff: +3.9 | 
+Los Angeles Lakers        | Prob: 2.3% | Win%: 0.524 | Pt Diff: +0.6 | 
+Washington Wizards        | Prob: 1.8% | Win%: 0.427 | Pt Diff: -1.2 | 
+Portland Trail Blazers    | Prob: 1.4% | Win%: 0.402 | Pt Diff: -4.0 | 
+Atlanta Hawks             | Prob: 1.4% | Win%: 0.500 | Pt Diff: +0.3 | 
+
+To predict for other seasons, call:
+predict_championship_probabilities(df_final, model, scaler, feature_columns, season_id=22020)
